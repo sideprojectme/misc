@@ -1,0 +1,52 @@
+<div class="header-container">
+
+
+ <h2 class="site-title-small"><a href="/">sideproject&nbsp;</a></h2>
+ <h1 class="site-title"><a href="{{site.baseurl}}/">Misc</a></h1>
+ 
+  <nav>
+    <ul class="ul-nav">
+         {% assign sorted_cats = site.categories | sort %}
+             {% for cat in sorted_cats %}
+
+                 <li class="li-level1">
+                     <a style="cursor: pointer" onclick="toggle_visibility('sub-{{forloop.index}}');"><strong>{{cat[0] | capitalize}}</strong></a>
+                    <div class="sub-nav" id="sub-{{forloop.index}}">
+                       {% if page.url contains cat[0] %}
+                       <style>
+                           #sub-{{forloop.index}} {
+                               display: block !important
+                           }
+                        </style>
+                       {% endif %}
+                        <ul class="sub-nav-ul">
+                            {% assign sorted_tags = site.tags | sort %}
+                            {% for tag in sorted_tags %}
+                            {% assign zz = tag[1] | where: "categories", {{cat[0]}} | sort %}
+                            {% if zz != empty %}
+                            <li><a href="{{site.baseurl}}/{{cat[0]}}/{{tag[0]}}" class="tag">{{ tag[0] | capitalize }}</a></li>
+                             {% endif %}
+                             {% endfor %}
+                         </ul>
+                     </div>
+                 </li>
+            {% endfor %}   
+     
+      </ul>
+    </nav>   
+
+</div>
+
+
+
+<script type="text/javascript">
+
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+
+</script>

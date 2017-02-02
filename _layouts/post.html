@@ -1,0 +1,49 @@
+---
+layout: default
+---
+<div class="main-container">
+
+{% include header.html %}
+
+<div id="container">
+
+
+<div class="page-container">
+   {% if page.img %}
+    <img class="featured-img" src={{ "/images-hq/" | prepend: site.baseurl | append : page.img}} alt="{{page.title}}">
+    {% endif %}
+    <div class="content">
+    <article>
+        <h1 class="page-title">{{page.title}}</h1>
+     
+        <div class="meta">
+             {% if page.date %}
+                <span><i class="fa fa-calendar-o" aria-hidden="true"></i> {{page.date | date: '%Y, %b %d'}}&nbsp;&nbsp;&nbsp;&nbsp;</span>
+             {% endif %} 
+              
+               {% if page.author %}
+                <span><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{page.author}}&nbsp;&nbsp;&nbsp;&nbsp;</span>
+               {% endif %}
+               
+               {% if page.categories %}
+                <span><i class="fa fa-folder-o" aria-hidden="true"></i> {{page.categories | first}}&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                {% endif %}
+                {% if page.tags %}
+                <span><i class="fa fa-tags" aria-hidden="true"></i> {% for tag in page.tags %}{{tag}}{% unless forloop.last %}&nbsp;{% endunless %}{% endfor %}&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                {% endif %}
+        </div>
+       
+        {{page.content | markdownify}}
+    </article>
+            {% if page.categories %}
+                {% include disqus.html %}
+            {% else %}
+            {% endif %}
+    </div>
+</div>
+
+
+
+
+    </div>
+</div>
