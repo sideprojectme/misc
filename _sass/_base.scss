@@ -117,8 +117,9 @@ img {
  */
 ul, ol {
     /* margin-left: $spacing-unit; */
+    font-size: 18px;
      @include media-query($on-palm) {
-                font-size: 12px;
+                font-size: 14px;
                 }
 }
 
