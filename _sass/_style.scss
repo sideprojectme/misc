@@ -419,6 +419,8 @@ table {
 .headline {
     margin-left: 18%;
     margin-bottom: 1em;
+    letter-spacing: -1px;
+
     @include media-query($on-palm) {
         margin-left: 0;
         text-align: center;
